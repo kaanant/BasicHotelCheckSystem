@@ -13,7 +13,7 @@ int main(){
 	scanf("%d",&menu);
 	
 	if (menu==1){
-		oteleGiris(*ptrdizi,toplamMisafir);	
+		oteleGiris(ptrdizi,toplamMisafir);	
 	}
 	else if(menu==2){
 		//oteldenCikis();

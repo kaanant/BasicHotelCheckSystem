@@ -28,6 +28,7 @@ int main(){
  
 void oteleGiris(long int *ptrdizi,int *toplamMisafir){
 	long int TcNo;
+	int gelenMisafir,i;
 	printf("Misafir sayisini giriniz\n");
 	scanf("%d",&gelenMisafir);
 	newptr=(long int*)realloc(ptrdizi,toplamMisafir+gelenMisafir);

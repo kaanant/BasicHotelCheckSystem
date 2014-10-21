@@ -52,7 +52,9 @@ void oteleGiris(long int *ptrdizi,int *ptrToplamMisafir){
 }
 void oteldenCikis(long int *ptrdizi,int *toplamMisafir){
 	int cikanMisafir=0,i=0,j=0;
+	int sonMisafir=0;
 	long int Tc=0;
+	long int *newptr;
 	printf("Otelden cikis yapan kisi sayisini giriniz");
 	scanf("%d",&cikanMisafir);
 	for(i=0;i<cikanMisafir;i++){
@@ -63,6 +65,17 @@ void oteldenCikis(long int *ptrdizi,int *toplamMisafir){
 				*(ptrdizi+j)=0;
 		}
 	}
+	sonMisafir=(*toplamMisafir)-cikanMisafir;
+	newptr=(long int*)malloc(sizeof(long int)*sonMisafir);
+	for(i=0;i<*toplamMisafir;i++){
+		if((*(ptrdizi+i))!=0){
+			*(newptr+i)=*(ptrdizi+i);
+		}
+	}
+	free(ptrdizi);
+	ptrdizi=newptr;
+
+
 
 }
 void misafirList(int toplamMisafir,long int *ptrdizi){

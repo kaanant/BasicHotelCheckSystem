@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
     
-void oteleGiris(long int *,int *);		
-long int oteldenCikis(long int *,int *,long int *);
+long int * oteleGiris(long int *,int *);		
+long int * oteldenCikis(long int *,int *,long int *);
 void misafirList(int ,long int *);
 
 int main(){
@@ -17,7 +17,7 @@ int main(){
 		scanf("%d",&menu);
 	
 		if (menu==1){
-			oteleGiris(ptrdizi,&toplamMisafir);	
+			ptrdizi=oteleGiris(ptrdizi,&toplamMisafir);	
 		}
 		else if(menu==2){
 			ptrdizi=oteldenCikis(ptrdizi,&toplamMisafir,newptr2);
@@ -29,7 +29,7 @@ int main(){
 	return 0;  
 }
  
-void oteleGiris(long int *ptrdizi,int *ptrToplamMisafir){
+long int * oteleGiris(long int *ptrdizi,int *ptrToplamMisafir){
 	int gelenMisafir=0,i=0;
 	printf("Misafir sayisini giriniz\n");
 	scanf("%d",&gelenMisafir);
@@ -46,9 +46,9 @@ void oteleGiris(long int *ptrdizi,int *ptrToplamMisafir){
 	}
 
 	*ptrToplamMisafir += gelenMisafir;
-	return ;
+	return ptrdizi;
 }
-long int oteldenCikis(long int *ptrdizi,int *toplamMisafir, long int *newptr2){
+long int * oteldenCikis(long int *ptrdizi,int *toplamMisafir, long int *newptr2){
 	int cikanMisafir=0,i=0,j=0,k=0;
 	int sonMisafir=0;
 	long int Tc=0;

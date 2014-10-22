@@ -2,18 +2,17 @@
 #include <stdlib.h>
     
 void oteleGiris(long int *,int *);		
-void oteldenCikis(long int *,int *);
+long int oteldenCikis(long int *,int *,long int *);
 void misafirList(int ,long int *);
 
 int main(){
 	int menu;
-	long int *ptrdizi;
+	long int *ptrdizi,*newptr2;
 	int toplamMisafir=0;
 
 	ptrdizi=(long int *)malloc(sizeof(long int));
 
-	do{
-	
+	do{	
 		printf("\t\tMenu\n1-oteleGiris\n2-oteldenCikis\n3-MisafirListesi\n4-EXIT\n");
 		scanf("%d",&menu);
 	
@@ -21,12 +20,11 @@ int main(){
 			oteleGiris(ptrdizi,&toplamMisafir);	
 		}
 		else if(menu==2){
-			oteldenCikis(ptrdizi,&toplamMisafir);
+			ptrdizi=oteldenCikis(ptrdizi,&toplamMisafir,newptr2);
 		}
 		else if(menu==3){
 			misafirList(toplamMisafir,ptrdizi);	
-		}
-		
+		}		
 	}while(menu!=4);		
 	return 0;  
 }
@@ -50,11 +48,11 @@ void oteleGiris(long int *ptrdizi,int *ptrToplamMisafir){
 	*ptrToplamMisafir += gelenMisafir;
 	return ;
 }
-void oteldenCikis(long int *ptrdizi,int *toplamMisafir){
-	int cikanMisafir=0,i=0,j=0;
+long int oteldenCikis(long int *ptrdizi,int *toplamMisafir, long int *newptr2){
+	int cikanMisafir=0,i=0,j=0,k=0;
 	int sonMisafir=0;
 	long int Tc=0;
-	long int *newptr;
+
 	printf("Otelden cikis yapan kisi sayisini giriniz");
 	scanf("%d",&cikanMisafir);
 	for(i=0;i<cikanMisafir;i++){
@@ -66,17 +64,21 @@ void oteldenCikis(long int *ptrdizi,int *toplamMisafir){
 		}
 	}
 	sonMisafir=(*toplamMisafir)-cikanMisafir;
-	newptr=(long int*)malloc(sizeof(long int)*sonMisafir);
-	for(i=0;i<*toplamMisafir;i++){
+	//printf("%d\n",sonMisafir);
+	newptr2=(long int*)malloc(sonMisafir*sizeof(long int));
+		if(!newptr2){
+		printf("\nOtelde Yer Yok");
+		return;
+	}
+	for(i=0;i<(*toplamMisafir);i++){
 		if((*(ptrdizi+i))!=0){
-			*(newptr+i)=*(ptrdizi+i);
+			*(newptr2+k)=*(ptrdizi+i);
+			k++;
 		}
 	}
 	free(ptrdizi);
-	ptrdizi=newptr;
-
-
-
+	ptrdizi=newptr2;
+	return ptrdizi;
 }
 void misafirList(int toplamMisafir,long int *ptrdizi){
 	int i;
